@@ -35,4 +35,9 @@
 -dontwarn retrofit2.**
 -dontwarn org.slf4j.**
 
+# JNI-facing libraries: libj2v8.so resolves Java classes via FindClass in JNI_OnLoad;
+# R8 renaming/stripping crashes the app (ClassNotFoundException V8Inspector -> abort).
+-keep class com.eclipsesource.v8.** { *; }
+-keepclassmembers class com.eclipsesource.v8.** { *; }
+
 # End Enable minification
