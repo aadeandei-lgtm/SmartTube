@@ -45,4 +45,10 @@
 # them -> API responses parse to null -> empty feed, no video.
 -keep class com.liskovsoft.** { *; }
 
+# SABR protobuf message classes are read via protobuf reflection by exact field names
+# (e.g. StreamerContext$ClientInfo.hl_); R8 field renaming breaks parsing at stream
+# build time -> "Field hl_ not found" RuntimeException, playback never starts.
+-keep class com.google.android.exoplayer2.source.sabr.protos.** { *; }
+-keepclassmembers class com.google.android.exoplayer2.source.sabr.protos.** { *; }
+
 # End Enable minification
