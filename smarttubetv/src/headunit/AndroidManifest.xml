@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Head-unit build: largeHeap off (box RAM kecil 1-2 GB; heap besar menambah tekanan memori) -->
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
-    <application android:largeHeap="false" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <application
+        android:largeHeap="false"
+        tools:replace="android:largeHeap" />
 </manifest>
