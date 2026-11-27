@@ -111,6 +111,20 @@ android {
                 signingConfig signingConfigs.release
             }
         }
+        // Head-unit build: R8 shrink + resource shrink enabled (upstream keeps them off for
+        // the stock release), signed with the auto-generated debug key so it installs on a
+        // test device without release credentials. Installs alongside the stock app.
+        headunit {
+            initWith(release)
+            minifyEnabled true
+            shrinkResources true
+            signingConfig signingConfigs.debug
+            applicationIdSuffix ".headunit"
+            matchingFallbacks += ['release']
+            ndk {
+                abiFilters 'armeabi-v7a'
+            }
+        }
         // Use same key for release and debug for testing
         debug {
             if (keystorePropertiesFile.exists()) {
