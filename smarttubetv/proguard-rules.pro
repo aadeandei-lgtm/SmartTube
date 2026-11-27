@@ -40,4 +40,9 @@
 -keep class com.eclipsesource.v8.** { *; }
 -keepclassmembers class com.eclipsesource.v8.** { *; }
 
+# App + API model classes (youtubeapi data models, app internals) are read/written via
+# Gson reflection and leanback mods use reflection field injection; R8 stripping empties
+# them -> API responses parse to null -> empty feed, no video.
+-keep class com.liskovsoft.** { *; }
+
 # End Enable minification
